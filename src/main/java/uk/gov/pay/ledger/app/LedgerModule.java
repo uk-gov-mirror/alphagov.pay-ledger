@@ -8,6 +8,7 @@ import io.dropwizard.core.setup.Environment;
 import org.jdbi.v3.core.Jdbi;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.http.apache5.Apache5HttpClient;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sns.SnsClientBuilder;
@@ -143,7 +144,9 @@ public class LedgerModule extends AbstractModule {
 
     @Provides
     public SqsClient sqsClient(LedgerConfig ledgerConfig) {
-        SqsClientBuilder clientBuilder = SqsClient.builder();
+        SqsClientBuilder clientBuilder = SqsClient
+                .builder()
+                .httpClient(Apache5HttpClient.create());
 
         if (ledgerConfig.getSqsConfig().isNonStandardServiceEndpoint()) {
 

@@ -2,8 +2,8 @@ package uk.gov.pay.ledger.healthcheck;
 
 import com.codahale.metrics.health.HealthCheck;
 import com.google.inject.Inject;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
+import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.core.exception.SdkClientException;
